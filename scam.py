@@ -5,7 +5,7 @@ from discord.ext import commands
 from flask import Flask
 import threading
 
-# Uptime ping server
+# Web server to keep Render app alive
 app = Flask('')
 
 @app.route('/')
@@ -37,6 +37,8 @@ async def on_ready():
 
 @tree.command(name="ping", description="Check bot's latency")
 async def ping(interaction: discord.Interaction):
+    await interaction.response.defer()
+
     latency = round(client.latency * 1000)
     uptime = round(time.time() - start_time)
 
@@ -47,6 +49,6 @@ async def ping(interaction: discord.Interaction):
     embed.add_field(name="Latency", value=f"{latency}ms", inline=True)
     embed.add_field(name="Uptime", value=f"{uptime}s", inline=True)
 
-    await interaction.response.send_message(embed=embed)
+    await interaction.followup.send(embed=embed)
 
 client.run(os.getenv("TOKEN"))
