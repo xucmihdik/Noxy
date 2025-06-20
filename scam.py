@@ -5,7 +5,7 @@ from discord.ext import commands
 from flask import Flask
 import threading
 
-# Flask server for uptime pings
+# Uptime ping server
 app = Flask('')
 
 @app.route('/')
@@ -39,7 +39,14 @@ async def on_ready():
 async def ping(interaction: discord.Interaction):
     latency = round(client.latency * 1000)
     uptime = round(time.time() - start_time)
-    await interaction.response.send_message(f"🏓 Pong! Latency: {latency}ms | Uptime: {uptime}s")
 
-# Run bot using token from environment
+    embed = discord.Embed(
+        title="🏓 Pong!",
+        color=discord.Color.green()
+    )
+    embed.add_field(name="Latency", value=f"{latency}ms", inline=True)
+    embed.add_field(name="Uptime", value=f"{uptime}s", inline=True)
+
+    await interaction.response.send_message(embed=embed)
+
 client.run(os.getenv("TOKEN"))
