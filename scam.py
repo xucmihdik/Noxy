@@ -1,5 +1,7 @@
-TOKEN = "MTM4MzY5NjMwOTUxNjc2NzI5Mg.GWOTKn.smKASOmAXgFizSppaXmwCdbMEuS4sDXXVWD2mI"
-
+import discord
+from discord import CustomActivity
+from discord.ext import commands
+import os
 from flask import Flask
 from threading import Thread
 
@@ -13,10 +15,6 @@ def run():
     app.run(host='0.0.0.0', port=8080)
 
 Thread(target=run).start()
-
-import discord
-from discord import CustomActivity
-from discord.ext import commands
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -445,4 +443,4 @@ async def on_command_error(ctx, error):
     else:
         raise error
 
-client.run(TOKEN)
+client.run(os.getenv("TOKEN"))
