@@ -1,4 +1,4 @@
-TOKEN = "MTM4NDkxODYxOTU4MTg0NTUyNA.GjyXVl.b4oRitDmI1bTD_VE-VsQ4zrmLC53LeEYYrGlPo"
+TOKEN = "MTM4MzY5NjMwOTUxNjc2NzI5Mg.Go_pCu.2Zo3POYRA_5OSv9Wq6nQgZi0D8K6YB5gUL_G_Y"
 
 from flask import Flask
 from threading import Thread
